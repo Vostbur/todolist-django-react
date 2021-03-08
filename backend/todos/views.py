@@ -1,6 +1,6 @@
 from rest_framework.generics import (
     ListAPIView,
-    RetrieveAPIView
+    RetrieveUpdateAPIView
 )
 
 from .models import Todo
@@ -12,6 +12,6 @@ class ListTodo(ListAPIView):
     serializer_class = TodoSerializer
 
 
-class DetailTodo(RetrieveAPIView):
+class DetailTodo(RetrieveUpdateAPIView):
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer

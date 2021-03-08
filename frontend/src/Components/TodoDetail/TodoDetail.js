@@ -18,10 +18,27 @@ function TodoDetail({ match }) {
     })
   }, [id])
 
+  const handleRemoveItem = (e) => {
+    const id = e.target.getAttribute("value")
+    todoDetail.active = !todoDetail.active
+    axios({
+      method: "PUT",
+      url: `http://localhost:8000/api/${id}/`,
+      data: todoDetail
+    }).then(response => {
+      console.log(response.data)
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
   return (
     <div>
       <strong>{todoDetail.title}</strong>
       <p>{todoDetail.body}</p>
+      <span value={todoDetail.id} onClick={handleRemoveItem}>
+        x
+      </span>
     </div>
   );
 }
