@@ -1,12 +1,9 @@
-from django.urls import path
+from rest_framework.routers import SimpleRouter
 
-from .views import (
-    ListTodo,
-    DetailTodo
-)
+from .views import TodoViewSet
 
 
-urlpatterns = [
-    path('', ListTodo.as_view()),
-    path('<int:pk>/', DetailTodo.as_view())
-]
+router = SimpleRouter()
+router.register('', TodoViewSet, basename='todos')
+
+urlpatterns = router.urls
